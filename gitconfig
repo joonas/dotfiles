@@ -1,1 +1,25 @@
-/Users/joonas/.dotfiles/.gitconfig
+[user]
+    name = Joonas Bergius
+    email = joonas.bergius@gmail.com
+[color]
+    ui = auto
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    df = diff
+    dc = diff --cached
+    amend = commit --amend
+    aa = add --all
+    b = branch
+    unstage = reset HEAD
+
+    l = "!source ~/.githelpers && pretty_git_log"
+    la = !git l --all
+    r = !git l -30
+    ra = !git r --all
+	br = branch
+
+[core]
+    excludesfile = /Users/joonas/.gitignore_global
+    editor = vim
