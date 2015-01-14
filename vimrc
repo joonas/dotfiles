@@ -7,6 +7,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 
@@ -78,6 +79,3 @@ function! RenameFile()
     endif
 endfunction
 map <leader>n :call RenameFile()<cr>
-
-call Pl#Theme#InsertSegment('ws_marker', 'before', 'fugitive')
-let g:Powerline_symbols = 'fancy'
