@@ -14,6 +14,9 @@ filetype plugin indent on
 syntax enable
 
 set t_Co=256
+set background=dark
+let g:solarized_termcolors=16
+colorscheme solarized
 
 set laststatus=2
 set encoding=utf-8
@@ -34,9 +37,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
-:colors solarized
-set background=light
 
 au FileType ruby,yaml,cucumber,coffee setlocal sts=2 ts=2 sw=2
 au FileType php setlocal fileformats+=dos
