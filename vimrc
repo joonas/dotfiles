@@ -1,7 +1,17 @@
-call pathogen#infect()
-call pathogen#helptags()
-syntax on
+set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+
+call vundle#end()
+
 filetype plugin indent on
+syntax enable
 
 set t_Co=256
 
