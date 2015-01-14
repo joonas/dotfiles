@@ -19,6 +19,9 @@ set background=dark
 let g:solarized_termcolors=16
 colorscheme solarized
 
+" Enable use of powerline-specific fonts and fancy symbols
+let g:airline_powerline_fonts = 1
+
 set laststatus=2
 set encoding=utf-8
 
