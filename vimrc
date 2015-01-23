@@ -8,6 +8,13 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -17,10 +24,69 @@ syntax enable
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=16
-colorscheme solarized
+colorscheme Tomorrow-Night
+
+set clipboard=unnamed " use OS clipboard
+
+" Configure netrw to behave nicely
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_altv=1
+let g:netrw_preview=1
+
+" http://ivanbrennan.nyc/blog/2014/01/16/rigging-vims-netrw/
+fun! VexToggle(dir)
+  if exists("t:vex_buf_nr")
+     call VexClose()
+  else
+    call VexOpen(a:dir)
+  endif
+endf
+
+fun! VexOpen(dir)
+  let g:netrw_browse_split=4
+  let vex_width = 25
+
+  execute "Vexplore " . a:dir
+  let t:vex_buf_nr = bufnr("%")
+  wincmd H
+
+  call VexSize(vex_width)
+endf
+
+fun! VexClose()
+  let cur_win_nr = winnr()
+  let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
+
+  1wincmd w
+  close
+  unlet t:vex_buf_nr
+
+  execute (target_nr - 1) . "wincmd w"
+  call NormalizeWidths()
+endf
+
+fun! VexSize(width)
+  execute "vertical resize" . a:width
+  set winfixwidth
+  call NormalizeWidths()
+endf
+
+fun! NormalizeWidths()
+  let eadir_pref = &eadirection
+  set eadirection=hor
+  set equalalways! equalalways!
+  let &eadirection = eadir_pref
+endf
+
+noremap <Leader><Tab> :call VexToggle(getcwd())<cr>
+noremap <Leader>` :call VexToggle("")<cr>
 
 " Enable use of powerline-specific fonts and fancy symbols
 let g:airline_powerline_fonts = 1
+
+"
+let g:ctrlp_working_path_mode = 'ra'
 
 set laststatus=2
 set encoding=utf-8
@@ -68,6 +134,14 @@ let g:vroom_use_vimux = 1
 :au InsertLeave * :set rnu
 
 :set cul
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+let g:rspec_runner = "os_x_iterm"
 
 map <Leader>rl :RunLastVimTmuxCommand
 
