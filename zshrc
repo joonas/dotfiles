@@ -10,6 +10,7 @@ alias v='vagrant'
 alias r='rails'
 alias ls='ls -G'
  
+setopt auto_cd
 setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats \
@@ -35,5 +36,12 @@ export RPROMPT=''
 
 export PROMPT="
 %~
-$fg[yellow]⚡$reset_color "
+$fg[cyan]☁ $reset_color > "
 
+export PROMPT="
+%~
+☁️  $fg[cyan]>$reset_color "
+
+export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
+
+fpath=(/usr/local/share/zsh-completions $fpath)
