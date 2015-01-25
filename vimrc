@@ -135,6 +135,9 @@ let g:vroom_use_vimux = 1
 
 :set cul
 
+" Highlight trailing whitespace
+match ErrorMsg '\s\+$'
+
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
